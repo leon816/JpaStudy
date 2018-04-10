@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+        http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
+	version="2.1">
+
+	<!-- <package>com.example.demo.entity</package> -->
+
+
+	<!-- entity mapping -->
+	<entity class="com.example.demo.entity.User">
+		<!-- <table name="user" /> -->
+		<named-native-query name="User.myQuery"
+			result-set-mapping="resultMapping">
+			<query><![CDATA[SELECT t.id, t.user_name, t.password FROM user t]]></query>
+		</named-native-query>
+		<sql-result-set-mapping name="resultMapping">
+			<entity-result entity-class="com.example.demo.entity.User">
+				<field-result name="id" column="id"  />
+				<field-result name="password" column="password" />
+				<!-- <field-result name="userName" column="user_name" /> -->
+			</entity-result>
+		</sql-result-set-mapping>
+	</entity>
+</entity-mappings>
